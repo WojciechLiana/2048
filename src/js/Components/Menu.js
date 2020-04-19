@@ -7,7 +7,7 @@ function Menu() {
         <div>
             <MenuButton label='New Game'/>
             <MenuButton label='Rules'/>
-            <MenuButton label='History'/>
+            <MenuButton label='Stats'/>
             <MenuButton label='About'/>
             <MenuButton label='Exit' action={()=>window.close()}/>
         </div>
