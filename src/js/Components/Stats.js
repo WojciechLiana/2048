@@ -8,7 +8,7 @@ function Stats({wins, losts}) {
         <div>
             <div>Games won: {wins}</div>
             <div>Games lost: {losts}</div>
-            <div>You have won {winRate(wins, losts)} games.</div>
+            <div>You have won {winRate(wins, losts)}% games.</div>
         </div>
     );
 }
