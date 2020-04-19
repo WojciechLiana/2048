@@ -9,7 +9,7 @@ function Menu() {
             <MenuButton label='Rules'/>
             <MenuButton label='History'/>
             <MenuButton label='About'/>
-            <MenuButton label='Exit'/>
+            <MenuButton label='Exit' action={()=>window.close()}/>
         </div>
     );
 }
