@@ -2,7 +2,7 @@ import React from "react";
 
 function Stats({wins, losts}) {
 
-    const winRate = (wins, losts) => wins/(wins+losts)*100;
+    const winRate = (wins, losts) => wins / (wins + losts) * 100;
 
     return (
         <div>
