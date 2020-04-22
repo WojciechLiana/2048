@@ -1,8 +1,8 @@
 import React from "react";
 
-function Arrow({direction}) {
+function Arrow({direction, addRandomCell}) {
     return (
-        <button>{direction}</button>
+        <button onClick={()=>addRandomCell()}>{direction}</button>
     );
 }
 
