@@ -1,10 +1,10 @@
 import React from "react";
 import Cell from "./Cell.js";
 
-function Row() {
+function Row({row}) {
     return (
         <div className="row">
-            <Cell/><Cell/><Cell/><Cell/><Cell/>
+            {row.map((cell, id)=><Cell key={id} value={cell}/>)}
         </div>
     );
 }

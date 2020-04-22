@@ -1,14 +1,10 @@
 import React from "react";
 import Row from "./Row.js";
 
-function Board() {
+function Board({board}) {
     return (
-        <div>
-            <Row/>
-            <Row/>
-            <Row/>
-            <Row/>
-            <Row/>
+        <div className='board'>
+            {board.map((row, id) => <Row key={id} row={row}/>)}
         </div>
     );
 }

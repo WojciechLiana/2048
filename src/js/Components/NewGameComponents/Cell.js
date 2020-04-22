@@ -1,10 +1,10 @@
 import React from "react";
 import "../../../css/cell.sass"
 
-function Cell() {
+function Cell({value}) {
     return (
         <div className='cell'>
-
+            {value}
         </div>
     );
 }
