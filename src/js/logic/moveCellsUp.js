@@ -5,15 +5,16 @@ function moveCellsUp(table) {
             JSON.parse(JSON.stringify(table))[row].filter(
                 element => element !== null
             ));
-    }
-
-    for (let row = 0; row < 5; row++) {
-        while (newTable[row].length !== 5) {
-            newTable[row].push(null);
-        }
+        addMissingCell(newTable[row]);
     }
 
     return newTable;
 }
+
+const addMissingCell = (row)=>{
+    while (row.length !== 5) {
+        row.push(null);
+    }
+};
 
 export default moveCellsUp;

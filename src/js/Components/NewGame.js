@@ -9,8 +9,8 @@ class NewGame extends React.Component {
         super(props);
         this.state = {
             board: [[null, null, null, null, null],
-                [null, null, null, 2, null],
-                [null, null, 2, null, 2],
+                [null, null, 2, 2, null],
+                [4, 2, 2, 2, null],
                 [null, null, null, null, null],
                 [null, null, null, null, null]],
         };
