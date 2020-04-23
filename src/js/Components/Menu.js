@@ -7,7 +7,7 @@ import Stats from "./Stats";
 import MenuButton from "./MenuButton";
 import Navbar from "./Navbar";
 
-function Menu() {
+function Menu(){
 
     return (
         <Router>

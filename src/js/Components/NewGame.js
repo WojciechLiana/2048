@@ -2,16 +2,15 @@ import React from "react";
 import Board from "./NewGameComponents/Board";
 import Arrow from "./NewGameComponents/Arrow";
 import checkEmptyCells from "../logic/checkEmptyCells";
-import updateTable from "../logic/updateTable";
-import findRandomEmptyCell from "../logic/findRandomEmptyCell";
+import moveUpHandler from "../logic/moveUpHandler";
 
 class NewGame extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             board: [[null, null, null, null, null],
-                [null, null, null, null, null],
-                [null, null, 2, null, null],
+                [null, null, null, 2, null],
+                [null, null, 2, null, 2],
                 [null, null, null, null, null],
                 [null, null, null, null, null]],
         };
@@ -19,8 +18,9 @@ class NewGame extends React.Component {
 
     render() {
 
-        const onAddRandomCell = () => {
-            this.setState({board: updateTable(this.state.board, findRandomEmptyCell(this.state.board))})
+        const moveUpClickHandler = () => {
+            this.setState({board: moveUpHandler(this.state.board)});
+
         };
 
         return (
@@ -29,14 +29,14 @@ class NewGame extends React.Component {
                     <div>
                         <Board board={this.state.board}/>
                         <div>
-                            <Arrow direction='up' addRandomCell={() => onAddRandomCell()}/>
+                            <Arrow direction='up' onClick={() => moveUpClickHandler()}/>
                         </div>
                         <div>
-                            <Arrow direction='left' addRandomCell={() => onAddRandomCell()}/>
-                            <Arrow direction='right' addRandomCell={() => onAddRandomCell()}/>
+                            <Arrow direction='left' onClick={() => moveUpClickHandler()}/>
+                            <Arrow direction='right' onClick={() => moveUpClickHandler()}/>
                         </div>
                         <div>
-                            <Arrow direction='down' addRandomCell={() => onAddRandomCell()}/>
+                            <Arrow direction='down' onClick={() => moveUpClickHandler()}/>
                         </div>
                     </div> :
                     <div>Game over</div>}
