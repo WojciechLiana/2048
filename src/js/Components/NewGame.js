@@ -3,6 +3,7 @@ import Board from "./NewGameComponents/Board";
 import Arrow from "./NewGameComponents/Arrow";
 import checkEmptyCells from "../logic/checkEmptyCells";
 import moveUpHandler from "../logic/moveUpHandler";
+import moveDownHandler from "../logic/moveDownHandler";
 
 class NewGame extends React.Component {
     constructor(props) {
@@ -20,7 +21,9 @@ class NewGame extends React.Component {
 
         const moveUpClickHandler = () => {
             this.setState({board: moveUpHandler(this.state.board)});
-
+        };
+        const moveDownClickHandler = () => {
+            this.setState({board: moveDownHandler(this.state.board)});
         };
 
         return (
@@ -36,7 +39,7 @@ class NewGame extends React.Component {
                             <Arrow direction='right' onClick={() => moveUpClickHandler()}/>
                         </div>
                         <div>
-                            <Arrow direction='down' onClick={() => moveUpClickHandler()}/>
+                            <Arrow direction='down' onClick={() => moveDownClickHandler()}/>
                         </div>
                     </div> :
                     <div>Game over</div>}
