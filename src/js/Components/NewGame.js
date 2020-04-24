@@ -4,16 +4,17 @@ import Arrow from "./NewGameComponents/Arrow";
 import checkEmptyCells from "../logic/checkEmptyCells";
 import moveUpHandler from "../logic/moveUpHandler";
 import moveDownHandler from "../logic/moveDownHandler";
+import moveRightHandler from "../logic/moveRightHandler";
 
 class NewGame extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            board: [[null, null, null, null, null],
-                [null, null, 2, 2, null],
-                [4, 2, 2, 2, null],
+            board: [[2, null, null, null, null],
+                [2, null, null, null, null],
+                [2, null, 2, null, null],
                 [null, null, null, null, null],
-                [null, null, null, null, null]],
+                [4, null, 2, null, null]],
         };
     }
 
@@ -25,6 +26,8 @@ class NewGame extends React.Component {
         const moveDownClickHandler = () => {
             this.setState({board: moveDownHandler(this.state.board)});
         };
+        const moveRightClickHandler = () =>
+            this.setState({board: moveRightHandler(this.state.board)});
 
         return (
             <div>
@@ -36,7 +39,7 @@ class NewGame extends React.Component {
                         </div>
                         <div>
                             <Arrow direction='left' onClick={() => moveUpClickHandler()}/>
-                            <Arrow direction='right' onClick={() => moveUpClickHandler()}/>
+                            <Arrow direction='right' onClick={() => moveRightClickHandler()}/>
                         </div>
                         <div>
                             <Arrow direction='down' onClick={() => moveDownClickHandler()}/>
