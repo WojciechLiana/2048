@@ -4,12 +4,12 @@ function moveCellsRight(table) {
 
     for (let row = 0; row < 5; row++) {
         newTable.sort((a, b) => ((a[row] < b[row]) && (a[row] === null)) ? -1 : 0);
-        copySortedRowToNewTab(sortedTable, newTable, row);
+        copyRowOfSortedToNew(sortedTable, newTable, row);
     }
     return sortedTable;
 }
 
-const copySortedRowToNewTab = (sorted, newTab, row) => {
+const copyRowOfSortedToNew = (sorted, newTab, row) => {
     for (let cell = 0; cell < 5; cell++) {
         sorted[cell].push(newTab[cell][row]);
     }
