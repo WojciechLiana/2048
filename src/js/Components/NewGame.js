@@ -15,7 +15,7 @@ class NewGame extends React.Component {
                 [null, null, null, null, null],
                 [null, null, 2, null, null],
                 [null, null, null, null, null],
-                [4, null, null, null, null]],
+                [4, null, 2, null, null]],
         };
     }
 

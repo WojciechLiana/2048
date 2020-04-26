@@ -1,4 +1,4 @@
-const checkEmptyCells= board=> board.some(
+const checkEmptyCells = board => board.some(
     row => row.some(cell => cell === null)
 );
 
