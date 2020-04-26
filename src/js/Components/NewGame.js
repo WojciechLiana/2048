@@ -7,6 +7,7 @@ import moveRightHandler from "../logic/moveRightHandler";
 import moveLeftHandler from "../logic/moveLeftHandler";
 import checkIfGameIsLost from "../logic/checkIfGameIsLost";
 import isGameWon from "../logic/isGameWon";
+import handleKeyboardArrows from "../logic/handleKeyboardArrows";
 
 class NewGame extends React.Component {
     constructor(props) {
@@ -35,7 +36,8 @@ class NewGame extends React.Component {
             this.setState({board: moveLeftHandler(this.state.board)});
 
         return (
-            <div>
+            <div tabIndex={0} onKeyDown={(e) => this.setState(
+                {board: handleKeyboardArrows(e.nativeEvent.code, this.state.board)})}>
                 {checkIfGameIsLost(this.state.board) ?
                     <div>Game over</div> :
                     (isGameWon(this.state.board) ?
@@ -54,7 +56,6 @@ class NewGame extends React.Component {
                                 </div>
                             </div>
                     )
-
                 }
             </div>
         );
