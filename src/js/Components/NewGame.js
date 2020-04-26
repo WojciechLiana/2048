@@ -6,6 +6,7 @@ import moveDownHandler from "../logic/moveDownHandler";
 import moveRightHandler from "../logic/moveRightHandler";
 import moveLeftHandler from "../logic/moveLeftHandler";
 import checkIfGameIsLost from "../logic/checkIfGameIsLost";
+import isGameWon from "../logic/isGameWon";
 
 class NewGame extends React.Component {
     constructor(props) {
@@ -37,19 +38,23 @@ class NewGame extends React.Component {
             <div>
                 {checkIfGameIsLost(this.state.board) ?
                     <div>Game over</div> :
-                    <div>
-                        <Board board={this.state.board}/>
-                        <div>
-                            <Arrow direction='up' onClick={() => moveUpClickHandler()}/>
-                        </div>
-                        <div>
-                            <Arrow direction='left' onClick={() => moveLeftClickHandler()}/>
-                            <Arrow direction='right' onClick={() => moveRightClickHandler()}/>
-                        </div>
-                        <div>
-                            <Arrow direction='down' onClick={() => moveDownClickHandler()}/>
-                        </div>
-                    </div>
+                    (isGameWon(this.state.board) ?
+                            <div>You Win!</div> :
+                            <div>
+                                <Board board={this.state.board}/>
+                                <div>
+                                    <Arrow direction='up' onClick={() => moveUpClickHandler()}/>
+                                </div>
+                                <div>
+                                    <Arrow direction='left' onClick={() => moveLeftClickHandler()}/>
+                                    <Arrow direction='right' onClick={() => moveRightClickHandler()}/>
+                                </div>
+                                <div>
+                                    <Arrow direction='down' onClick={() => moveDownClickHandler()}/>
+                                </div>
+                            </div>
+                    )
+
                 }
             </div>
         );
