@@ -25,12 +25,9 @@
   },
   "dependencies": {
     "css-loader": "^3.5.2",
-    "react-dom": "latest",
+    "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
     "style-loader": "^1.1.4",
-    "react": "latest",
-    "react": "latest",
-    "react": "latest",
-    "react": "latest"
+    "react": "^16.13.1"
   }
 }
