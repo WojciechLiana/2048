@@ -1,14 +1,13 @@
 import React from "react";
+import calculateWinRate from "../logic/calculateWinRate";
 
-function Stats({wins, losts}) {
-
-    const winRate = (wins, losts) => wins / (wins + losts) * 100;
+function Stats({winLostTab}) {
 
     return (
         <div>
-            <div>Games won: {wins}</div>
-            <div>Games lost: {losts}</div>
-            <div>You have won {winRate(wins, losts)}% games.</div>
+            <div>Games won: {winLostTab[0]}</div>
+            <div>Games lost: {winLostTab[1]}</div>
+            <div>You have won {calculateWinRate(winLostTab)}% games.</div>
         </div>
     );
 }

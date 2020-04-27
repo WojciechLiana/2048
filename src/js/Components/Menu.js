@@ -9,6 +9,8 @@ import Navbar from "./Navbar";
 
 function Menu(){
 
+    const [winLostTab, setStats] = React.useState([0, 0]);
+
     return (
         <Router>
             <Navbar/>
@@ -21,7 +23,7 @@ function Menu(){
             <Route path="/newGame" component={NewGame}/>
             <Route path="/about" component={About}/>
             <Route path="/rules" component={Rules}/>
-            <Route path="/stats" component={Stats}/>
+            <Route path="/stats" render={()=><Stats winLostTab={winLostTab}/>}/>
         </Router>
     );
 }
