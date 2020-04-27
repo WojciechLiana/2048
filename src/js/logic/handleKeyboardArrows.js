@@ -14,6 +14,8 @@ const handleKeyboardArrows = (keyPressed, board) => {
             return moveLeftHandler(board);
         case 'ArrowRight' :
             return moveRightHandler(board);
+        default :
+            return board;
     }
 };
 
