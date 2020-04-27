@@ -1,6 +1,7 @@
 import React from "react";
 import Board from "./NewGameComponents/Board";
 import Arrow from "./NewGameComponents/Arrow";
+import Win from "./NewGameComponents/Win";
 import moveUpHandler from "../logic/moveUpHandler";
 import moveDownHandler from "../logic/moveDownHandler";
 import moveRightHandler from "../logic/moveRightHandler";
@@ -8,6 +9,7 @@ import moveLeftHandler from "../logic/moveLeftHandler";
 import checkIfGameIsLost from "../logic/checkIfGameIsLost";
 import isGameWon from "../logic/isGameWon";
 import handleKeyboardArrows from "../logic/handleKeyboardArrows";
+import Lost from "./NewGameComponents/Lost";
 
 class NewGame extends React.Component {
     constructor(props) {
@@ -39,9 +41,9 @@ class NewGame extends React.Component {
             <div tabIndex={0} onKeyDown={(e) => this.setState(
                 {board: handleKeyboardArrows(e.nativeEvent.code, this.state.board)})}>
                 {checkIfGameIsLost(this.state.board) ?
-                    <div>Game over</div> :
+                    <Lost increaseLosts={() => this.props.increaseLosts}/> :
                     (isGameWon(this.state.board) ?
-                            <div>You Win!</div> :
+                            <Win increaseWins={() => this.props.increaseWins}/> :
                             <div>
                                 <Board board={this.state.board}/>
                                 <div>
