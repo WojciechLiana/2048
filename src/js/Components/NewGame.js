@@ -25,33 +25,30 @@ class NewGame extends React.Component {
 
     clickHandler(handlingFunctionChangingState) {
         this.setState({board: handlingFunctionChangingState(this.state.board)});
-    }
+    };
 
     render() {
 
         return (
-            <div tabIndex={0} onKeyDown={(e) => this.setState(
-                {board: handleKeyboardArrows(e.nativeEvent.code, this.state.board)})}>
-                {checkIfGameIsLost(this.state.board) ?
-                    <Lost increaseLosts={() => this.props.increaseLosts}/> :
-                    (isGameWon(this.state.board) ?
-                            <Win increaseWins={() => this.props.increaseWins}/> :
+            checkIfGameIsLost(this.state.board) ?
+                <Lost increaseLosts={() => this.props.increaseLosts}/> :
+                (isGameWon(this.state.board) ?
+                        <Win increaseWins={() => this.props.increaseWins}/> :
+                        <div tabIndex={0} onKeyDown={(e) => this.setState(
+                            {board: handleKeyboardArrows(e.nativeEvent.code, this.state.board)})}>
+                            <Board board={this.state.board}/>
                             <div>
-                                <Board board={this.state.board}/>
-                                <div>
-                                    <Arrow direction='up' onClick={() => this.clickHandler(moveUpHandler)}/>
-                                </div>
-                                <div>
-                                    <Arrow direction='left' onClick={() => this.clickHandler(moveLeftHandler)}/>
-                                    <Arrow direction='right' onClick={() => this.clickHandler(moveRightHandler)}/>
-                                </div>
-                                <div>
-                                    <Arrow direction='down' onClick={() => this.clickHandler(moveDownHandler)}/>
-                                </div>
+                                <Arrow direction='up' onClick={() => this.clickHandler(moveUpHandler)}/>
                             </div>
-                    )
-                }
-            </div>
+                            <div>
+                                <Arrow direction='left' onClick={() => this.clickHandler(moveLeftHandler)}/>
+                                <Arrow direction='right' onClick={() => this.clickHandler(moveRightHandler)}/>
+                            </div>
+                            <div>
+                                <Arrow direction='down' onClick={() => this.clickHandler(moveDownHandler)}/>
+                            </div>
+                        </div>
+                )
         );
     }
 }
