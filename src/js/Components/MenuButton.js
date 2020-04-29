@@ -1,8 +1,8 @@
 import React from "react";
 
-function MenuButton({label, action}) {
+function MenuButton({label}) {
     return (
-        <button onClick={() => action()}>{label}</button>
+        <button>{label}</button>
     );
 }
 

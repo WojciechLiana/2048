@@ -20,7 +20,7 @@ function Menu() {
             <Link to="/rules"><MenuButton label='Rules'/></Link>
             <Link to="/stats"><MenuButton label='Stats'/></Link>
             <Link to="/about"><MenuButton label='About'/></Link>
-            <MenuButton label='Exit' action={() => window.close()}/>
+            <button onClick={() => window.close()}>Exit</button>
 
             <Route path="/newGame" render={() => <NewGame
                 increaseLosts={() =>setLosts(losts +1)}
