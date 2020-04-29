@@ -6,12 +6,12 @@ import Rules from "./Rules";
 import Stats from "./Stats";
 import MenuButton from "./MenuButton";
 import Navbar from "./Navbar";
+import resetStatistics from "../logic/resetStatistics";
 
 function Menu() {
 
     const [wins, setWins] = React.useState(0);
     const [losts, setLosts] = React.useState(0);
-
 
     return (
         <Router>
@@ -22,14 +22,21 @@ function Menu() {
             <Link to="/about"><MenuButton label='About'/></Link>
             <button onClick={() => window.close()}>Exit</button>
 
-            <Route path="/newGame" render={() => <NewGame
-                increaseLosts={() =>setLosts(losts +1)}
-                increaseWins={() =>setWins(wins +1)}
-            />}
-            />
+            <Route path="/newGame" render={() =>
+                <NewGame
+                    increaseLosts={() => setLosts(losts + 1)}
+                    increaseWins={() => setWins(wins + 1)}
+                />
+            }/>
             <Route path="/about" component={About}/>
             <Route path="/rules" component={Rules}/>
-            <Route path="/stats" render={() => <Stats wins={wins} losts={losts}/>}/>
+            <Route path="/stats" render={() =>
+                <Stats
+                    wins={wins}
+                    losts={losts}
+                    resetStats={() => resetStatistics(setWins, setLosts)}
+                />
+            }/>
         </Router>
     );
 }
