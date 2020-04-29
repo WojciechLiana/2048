@@ -23,19 +23,11 @@ class NewGame extends React.Component {
         };
     }
 
+    clickHandler(handlingFunctionChangingState) {
+        this.setState({board: handlingFunctionChangingState(this.state.board)});
+    }
+
     render() {
-
-        const moveUpClickHandler = () =>
-            this.setState({board: moveUpHandler(this.state.board)});
-
-        const moveDownClickHandler = () =>
-            this.setState({board: moveDownHandler(this.state.board)});
-
-        const moveRightClickHandler = () =>
-            this.setState({board: moveRightHandler(this.state.board)});
-
-        const moveLeftClickHandler = () =>
-            this.setState({board: moveLeftHandler(this.state.board)});
 
         return (
             <div tabIndex={0} onKeyDown={(e) => this.setState(
@@ -47,14 +39,14 @@ class NewGame extends React.Component {
                             <div>
                                 <Board board={this.state.board}/>
                                 <div>
-                                    <Arrow direction='up' onClick={() => moveUpClickHandler()}/>
+                                    <Arrow direction='up' onClick={() => this.clickHandler(moveUpHandler)}/>
                                 </div>
                                 <div>
-                                    <Arrow direction='left' onClick={() => moveLeftClickHandler()}/>
-                                    <Arrow direction='right' onClick={() => moveRightClickHandler()}/>
+                                    <Arrow direction='left' onClick={() => this.clickHandler(moveLeftHandler)}/>
+                                    <Arrow direction='right' onClick={() => this.clickHandler(moveRightHandler)}/>
                                 </div>
                                 <div>
-                                    <Arrow direction='down' onClick={() => moveDownClickHandler()}/>
+                                    <Arrow direction='down' onClick={() => this.clickHandler(moveDownHandler)}/>
                                 </div>
                             </div>
                     )
