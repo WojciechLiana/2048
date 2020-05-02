@@ -14,18 +14,29 @@ import Lost from "./NewGameComponents/Lost";
 class NewGame extends React.Component {
     constructor(props) {
         super(props);
+        this.initialState = [
+            [null, null, null, null, null],
+            [null, null, null, null, null],
+            [null, null, 2, null, null],
+            [null, null, null, null, null],
+            [null, null, null, null, null]
+        ];
         this.state = {
-            board: [[null, null, null, null, null],
-                [null, null, null, null, null],
-                [null, null, 2, null, null],
-                [null, null, null, null, null],
-                [null, null, null, null, null]],
+            board: this.initialState
         };
     }
 
     clickHandler(handlingFunctionChangingState) {
         this.setState({board: handlingFunctionChangingState(this.state.board)});
     };
+
+    componentDidMount() {
+        this.setState({board: JSON.parse(localStorage.getItem('board')) || this.state.board});
+    }
+
+    componentWillUnmount() {
+        localStorage.setItem('board', JSON.stringify(this.state.board));
+    }
 
     render() {
 
@@ -47,6 +58,12 @@ class NewGame extends React.Component {
                             <div>
                                 <Arrow direction='down' onClick={() => this.clickHandler(moveDownHandler)}/>
                             </div>
+                            <button onClick={() => {
+                                localStorage.removeItem('board');
+                                this.setState({board: this.initialState});
+                                this.props.increaseLosts();
+                            }}>Reset Game
+                            </button>
                         </div>
                 )
         );
