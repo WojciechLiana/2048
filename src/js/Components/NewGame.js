@@ -1,11 +1,7 @@
 import React from "react";
 import Board from "./NewGameComponents/Board";
-import Arrow from "./NewGameComponents/Arrow";
+import ArrowsPanel from "./NewGameComponents/ArrowsPanel";
 import Win from "./NewGameComponents/Win";
-import moveUpHandler from "../logic/moveUpHandler";
-import moveDownHandler from "../logic/moveDownHandler";
-import moveRightHandler from "../logic/moveRightHandler";
-import moveLeftHandler from "../logic/moveLeftHandler";
 import checkIfGameIsLost from "../logic/checkIfGameIsLost";
 import isGameWon from "../logic/isGameWon";
 import handleKeyboardArrows from "../logic/handleKeyboardArrows";
@@ -48,16 +44,7 @@ class NewGame extends React.Component {
                         <div tabIndex={0} onKeyDown={(e) => this.setState(
                             {board: handleKeyboardArrows(e.nativeEvent.code, this.state.board)})}>
                             <Board board={this.state.board}/>
-                            <div>
-                                <Arrow direction='up' onClick={() => this.clickHandler(moveUpHandler)}/>
-                            </div>
-                            <div>
-                                <Arrow direction='left' onClick={() => this.clickHandler(moveLeftHandler)}/>
-                                <Arrow direction='right' onClick={() => this.clickHandler(moveRightHandler)}/>
-                            </div>
-                            <div>
-                                <Arrow direction='down' onClick={() => this.clickHandler(moveDownHandler)}/>
-                            </div>
+                            <ArrowsPanel clickHandler={(handlingFunction) => this.clickHandler(handlingFunction)}/>
                             <button onClick={() => {
                                 localStorage.removeItem('board');
                                 this.setState({board: this.initialState});
