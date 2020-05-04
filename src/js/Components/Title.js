@@ -1,9 +1,9 @@
 import React from "react";
 
-function Navbar() {
+function Title() {
     return (
         <div>2048</div>
     );
 }
 
-export default Navbar;
+export default Title;

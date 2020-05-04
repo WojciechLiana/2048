@@ -1,4 +1,79 @@
+$cell: #D1CCC5
+$cell2: #EEE4DA
+$cell4: #f2e2cb
+$cell8: #F2B179
+$cell16: #F59563
+$cell32: #F67C5F
+$cell64: #F86963
+$cell128: #FDF58E
+$cell256: #F5E56C
+$cell512: #F1DF59
+$cell1024: #F1DC42
+$cell2048: #F3DA29
+$cell4096: #302F2F
+
+$darkLabel: #302F2F
+$lightLabel: white
+
+@mixin cell
+  width: 60px
+  height: 60px
+  margin: 10px 5px
+  border: none
+  border-radius: 3px
+  line-height: 60px
+  font-weight: bolder
+  font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif
+  font-size: large
+
 .cell
-  width: 50px
-  height: 50px
-  border: solid
+  @include cell
+  background-color: $cell
+
+.cell2
+  background-color: $cell2
+  color: $darkLabel
+
+.cell4
+  background-color: $cell4
+  color: $darkLabel
+
+.cell8
+  background-color: $cell8
+  color: $lightLabel
+
+.cell16
+  background-color: $cell16
+  color: $lightLabel
+
+.cell32
+  background-color: $cell32
+  color: $lightLabel
+
+.cell64
+  background-color: $cell64
+  color: $lightLabel
+
+.cell128
+  background-color: $cell128
+  color: $darkLabel
+
+.cell256
+  background-color: $cell256
+  color: $darkLabel
+
+.cell512
+  background-color: $cell512
+  color: $darkLabel
+
+.cell1024
+  background-color: $cell1024
+  color: $darkLabel
+
+.cell2048
+  background-color: $cell2048
+  color: $darkLabel
+
+.cell4096
+  background-color: $cell4096
+  color: $lightLabel

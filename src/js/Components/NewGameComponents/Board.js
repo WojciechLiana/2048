@@ -1,5 +1,6 @@
 import React from "react";
 import Row from "./Row.js";
+import "../../../css/board.sass"
 
 function Board({board}) {
     return (
