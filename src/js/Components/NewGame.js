@@ -11,7 +11,7 @@ class NewGame extends React.Component {
     constructor(props) {
         super(props);
         this.initialState = [
-            [2, null, null, null, null],
+            [null, null, null, null, null],
             [null, null, null, null, null],
             [null, null, 2, null, null],
             [null, null, null, null, null],

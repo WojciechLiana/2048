@@ -1,12 +1,10 @@
 import React from "react";
-import Menu from "./Components/Menu.js"
+import Game from "./Components/Game.js"
 
-function Game() {
+function Game2048() {
     return (
-        <div>
-            <Menu/>
-        </div>
+            <Game/>
     );
 }
 
-export default Game;
+export default Game2048;
