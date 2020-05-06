@@ -6,6 +6,8 @@ import checkIfGameIsLost from "../logic/checkIfGameIsLost";
 import isGameWon from "../logic/isGameWon";
 import handleKeyboardArrows from "../logic/handleKeyboardArrows";
 import Lost from "./NewGameComponents/Lost";
+import Undo from "./NewGameComponents/Undo";
+import ResetBtn from "./NewGameComponents/ResetBtn";
 
 class NewGame extends React.Component {
     constructor(props) {
@@ -26,6 +28,12 @@ class NewGame extends React.Component {
         this.setState({board: handlingFunctionChangingState(this.state.board)});
     };
 
+    resetGameHandler() {
+        localStorage.removeItem('board');
+        this.setState({board: this.initialState});
+        this.props.increaseLosts();
+    }
+
     componentDidMount() {
         this.setState({board: JSON.parse(localStorage.getItem('board')) || this.state.board});
     }
@@ -44,13 +52,11 @@ class NewGame extends React.Component {
                         <div tabIndex={0} onKeyDown={(e) => this.setState(
                             {board: handleKeyboardArrows(e.nativeEvent.code, this.state.board)})}>
                             <Board board={this.state.board}/>
-                            <ArrowsPanel clickHandler={(handlingFunction) => this.clickHandler(handlingFunction)}/>
-                            <button onClick={() => {
-                                localStorage.removeItem('board');
-                                this.setState({board: this.initialState});
-                                this.props.increaseLosts();
-                            }}>Reset Game
-                            </button>
+                            <div className='bottomPanel'>
+                                <ArrowsPanel clickHandler={(handlingFunction) => this.clickHandler(handlingFunction)}/>
+                                <Undo/>
+                                <ResetBtn resetFunction={() => this.resetGameHandler()}/>
+                            </div>
                         </div>
                 )
         );

@@ -1,3 +1,28 @@
+$background: #D1CCC5
+$frame: #B5B1AC
+$darkLabel: #302F2F
+
+@mixin externalFrameDiv
+  background-color: $background
+  margin-top: 30px
+  padding: 15px
+  border-radius: 4px
+
+@mixin internalFrameDiv
+  background-color: $background
+  border: 7px solid $frame
+  border-radius: 4px
+  padding: 15px
+  display: flex
+  flex-direction: column
+
+@mixin  buttonsDefault
+  outline: none
+  font-weight: bolder
+  border: none
+  color: $darkLabel
+  border-radius: 3px
+
 .game
   display: flex
   flex-direction: column
@@ -8,7 +33,7 @@
 
     div
       margin: 10px 0
-      color: #302F2F
+      color: $darkLabel
       font-weight: bolder
       font-size: 40px
       text-align: center
@@ -20,15 +45,83 @@
     justify-content: space-around
 
     button
+      @include buttonsDefault
       width: 60px
       height: 40px
-      background-color: #D1CCC5
-      color: #302F2F
-      border: none
-      border-radius: 3px
-      font-weight: bolder
-      outline: none
+      background-color: $background
 
       &:hover
         background-color: #302F2F
         color: white
+
+  .bottomPanel
+    display: flex
+    align-items: center
+    justify-content: space-around
+
+    button
+      @include buttonsDefault
+      background-color: $background
+
+      &:hover
+        background-color: #302F2F
+        color: white
+
+    .resetBtn, .undoBtn
+      width: 60px
+      height: 60px
+
+    .arrow
+      width: 60px
+
+    .up, .down
+      margin-left: 30px
+
+  .stats
+    @include externalFrameDiv
+
+    .statsFrame
+      @include internalFrameDiv
+      align-items: center
+
+      & *
+        margin-bottom: 20px
+        font-weight: bolder
+        color: $darkLabel
+
+      button
+        @include buttonsDefault
+        background-color: #F2B179
+        width: 100px
+        height: 50px
+
+
+        &:hover
+          background-color: #F2E2CB
+
+  .about
+    @include externalFrameDiv
+
+    .aboutFrame
+      @include internalFrameDiv
+      align-items: center
+
+      & *
+        margin-bottom: 20px
+        color: $darkLabel
+        font-weight: bolder
+
+  .rules
+    @include externalFrameDiv
+
+    .rulesFrame
+      @include internalFrameDiv
+      align-items: flex-start
+
+      & *
+       margin-bottom: 20px
+       color: $darkLabel
+       font-weight: bolder
+
+      figure
+       margin: 0
