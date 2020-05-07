@@ -1,18 +1,21 @@
-function moveCellsLeft(table) {
-    const newTable = JSON.parse(JSON.stringify(table));
-    const sortedTable = [[], [], [], [], []];
+function moveCellsLeft(board) {
 
-    for (let row = 0; row <5; row++) {
-        newTable.sort((a, b) => ((a[row] > b[row]) && (b[row] === null)) ? -1 : 0);
-        copySortedRowToNewTab(sortedTable, newTable, row);
+    const boardAfterMove = [[], [], [], [], []];
+
+    for (let row = 0; row < 5; row++) {
+        const auxiliaryRow = [];
+        for (let cell = 0; cell < 5; cell++) {
+            board[cell][row] !== null ? auxiliaryRow.push(board[cell][row]) : false;
+        }
+        while (auxiliaryRow.length !== 5) {
+            auxiliaryRow.push(null);
+        }
+        for (let i = 0; i < 5; i++) {
+            boardAfterMove[i].push(auxiliaryRow[i]);
+        }
     }
-    return sortedTable;
+
+    return boardAfterMove;
 }
-
-const copySortedRowToNewTab = (sorted, newTab, row) => {
-    for (let cell = 0; cell < 5; cell++) {
-        sorted[cell].push(newTab[cell][row]);
-    }
-};
 
 export default moveCellsLeft;

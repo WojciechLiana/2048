@@ -8,9 +8,10 @@ const moveRightHandler = (board) => {
 
     const cellsMoved = moveCellsRight(board);
     const summedEqualCells = sumCellsRight(cellsMoved);
+    const cellsMovedAgain = moveCellsRight(summedEqualCells);
 
-    return checkIfMoveWasDone(board, summedEqualCells) ?
-        updateTableWithRandomCell(summedEqualCells, findRandomEmptyCell(summedEqualCells)) :
+    return checkIfMoveWasDone(board, cellsMovedAgain) ?
+        updateTableWithRandomCell(cellsMovedAgain, findRandomEmptyCell(cellsMovedAgain)) :
         board;
 };
 
