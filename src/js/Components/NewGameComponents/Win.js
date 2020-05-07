@@ -6,7 +6,7 @@ function Win({increaseWins, tryAgainFnc}) {
     useEffect(() => increaseWins());
 
     return (
-        <div>
+        <div className='win'>
             You Win!
             <TryAgain tryAgain={()=>tryAgainFnc()}/>
         </div>)

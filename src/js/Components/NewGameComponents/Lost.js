@@ -6,7 +6,7 @@ function Lost({increaseLosts, tryAgainFnc}) {
     useEffect(() => increaseLosts());
 
     return (
-        <div>
+        <div className='lost'>
             You Lost!
             <TryAgain tryAgain={()=>tryAgainFnc()}/>
         </div>)
