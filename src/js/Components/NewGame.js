@@ -15,7 +15,7 @@ class NewGame extends React.Component {
         this.initialState = [
             [null, null, null, null, null],
             [null, null, null, null, null],
-            [null, null, 2, null, null],
+            [1024, 1024, 2, null, null],
             [null, null, null, null, null],
             [null, null, null, null, null]
         ];
@@ -33,8 +33,12 @@ class NewGame extends React.Component {
         this.props.increaseLosts();
     }
 
-    componentDidMount() {
+    tryAgainFnc() {
         localStorage.removeItem('board');
+        this.setState({board: this.initialState});
+    }
+
+    componentDidMount() {
         this.setState({board: JSON.parse(localStorage.getItem('board')) || this.state.board});
     }
 
@@ -46,9 +50,9 @@ class NewGame extends React.Component {
 
         return (
             checkIfGameIsLost(this.state.board) ?
-                <Lost increaseLosts={() => this.props.increaseLosts}/> :
+                <Lost increaseLosts={() => this.props.increaseLosts} tryAgainFnc={()=>this.tryAgainFnc()}/> :
                 (isGameWon(this.state.board) ?
-                        <Win increaseWins={() => this.props.increaseWins}/> :
+                        <Win increaseWins={() => this.props.increaseWins} tryAgainFnc={()=>this.tryAgainFnc()}/> :
                         <div tabIndex={0} onKeyDown={(e) => this.setState(
                             {board: handleKeyboardArrows(e.nativeEvent.code, this.state.board)})}>
                             <Board board={this.state.board}/>
