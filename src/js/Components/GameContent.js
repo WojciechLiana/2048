@@ -9,8 +9,8 @@ import MenuPanel from "./MenuPanel";
 
 function GameContent() {
 
-    const [wins, setWins] = React.useState(0);
-    const [losts, setLosts] = React.useState(0);
+    const [wins, setWins] = React.useState(localStorage.getItem('wins')? JSON.parse(localStorage.getItem('wins')): 0);
+    const [losts, setLosts] = React.useState(localStorage.getItem('losts')? JSON.parse(localStorage.getItem('losts')): 0);
 
     return (
         <Router>
@@ -18,8 +18,14 @@ function GameContent() {
 
             <Route path="/newGame" render={() =>
                 <NewGame
-                    increaseLosts={() => setLosts(losts + 1)}
-                    increaseWins={() => setWins(wins + 1)}
+                    increaseLosts={() => {
+                        setLosts(losts + 1);
+                        localStorage.setItem('losts', losts.toString());
+                    }}
+                    increaseWins={() => {
+                        setWins(wins + 1);
+                        localStorage.setItem('wins', wins.toString());
+                    }}
                 />
             }/>
             <Route path="/about" component={About}/>

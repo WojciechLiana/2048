@@ -9,7 +9,11 @@ function Stats({wins, losts, resetStats}) {
                 <div>Games won: {wins}</div>
                 <div>Games lost: {losts}</div>
                 <div>You have won {calculateWinRate(wins, losts)}% games.</div>
-                <button onClick={() => resetStats()}>Reset Statistics</button>
+                <button onClick={() => {
+                    resetStats();
+                    localStorage.removeItem('wins');
+                    localStorage.removeItem('losts');
+                }}>Reset Statistics</button>
             </div>
         </div>
     );

@@ -29,12 +29,12 @@ class NewGame extends React.Component {
     };
 
     resetGameHandler() {
-        localStorage.removeItem('board');
         this.setState({board: this.initialState});
         this.props.increaseLosts();
     }
 
     componentDidMount() {
+        localStorage.removeItem('board');
         this.setState({board: JSON.parse(localStorage.getItem('board')) || this.state.board});
     }
 
