@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter as Router, Link, Route} from "react-router-dom";
+import {HashRouter as Router, Link, Route} from "react-router-dom";
 import NewGame from "./NewGame";
 import About from "./About";
 import Rules from "./Rules";
