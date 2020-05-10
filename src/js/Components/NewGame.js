@@ -71,8 +71,12 @@ class NewGame extends React.Component {
                             <Board board={this.state.board}/>
                             <Win increaseWins={() => this.props.increaseWins} tryAgainFnc={() => this.tryAgainFnc()}/>
                         </div> :
-                        <div tabIndex={0} onKeyDown={(e) => this.setState(
-                            {board: handleKeyboardArrows(e.nativeEvent.code, this.state.board)})}>
+                        <div tabIndex={0} onKeyDown={(e) => {
+                            this.setState(
+                                {previousBoard: this.state.board});
+                            this.setState(
+                                {board: handleKeyboardArrows(e.nativeEvent.code, this.state.board)})
+                        }}>
                             <Board board={this.state.board}/>
                             <div className='bottomPanel'>
                                 <ArrowsPanel clickHandler={(handlingFunction) => this.clickHandler(handlingFunction)}/>
