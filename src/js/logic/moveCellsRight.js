@@ -1,18 +1,18 @@
 function moveCellsRight(board) {
 
-    const boardAfterMove = [[], [], [], [], []];
+    const boardAfterMove = [[], [], [], []];
 
-    for (let row = 0; row < 5; row++) {
+    for (let row = 0; row < 4; row++) {
         const auxiliaryRow = [];
-        for (let cell = 0; cell < 5; cell++) {
+        for (let cell = 0; cell < 4; cell++) {
             board[cell][row] !== null ? auxiliaryRow.push(board[cell][row]) : false;
         }
 
-        while (auxiliaryRow.length !== 5) {
+        while (auxiliaryRow.length !== 4) {
             auxiliaryRow.unshift(null);
         }
 
-        for (let i = 0; i <5; i++) {
+        for (let i = 0; i <4; i++) {
             boardAfterMove[i].push(auxiliaryRow[i]);
         }
     }
