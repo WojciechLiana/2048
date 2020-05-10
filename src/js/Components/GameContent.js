@@ -9,8 +9,9 @@ import MenuPanel from "./MenuPanel";
 
 function GameContent() {
 
-    const [wins, setWins] = React.useState(localStorage.getItem('wins')? JSON.parse(localStorage.getItem('wins')): 0);
-    const [losts, setLosts] = React.useState(localStorage.getItem('losts')? JSON.parse(localStorage.getItem('losts')): 0);
+    const [wins, setWins] = React.useState(localStorage.getItem('wins') ? JSON.parse(localStorage.getItem('wins')) : 0);
+    const [losts, setLosts] = React.useState(localStorage.getItem('losts') ? JSON.parse(localStorage.getItem('losts')) : 0);
+    const [gameOver, setGameOver] = React.useState(localStorage.getItem('gameOver') ? JSON.parse(localStorage.getItem('gameOver')) : false);
 
     return (
         <Router>
@@ -19,13 +20,16 @@ function GameContent() {
             <Route path="/newGame" render={() =>
                 <NewGame
                     increaseLosts={() => {
-                        setLosts(losts + 1);
+                        setLosts(gameOver ? losts : losts + 1);
                         localStorage.setItem('losts', losts.toString());
+                        setGameOver(true);
                     }}
                     increaseWins={() => {
-                        setWins(wins + 1);
+                        setWins(gameOver ? wins : wins + 1);
                         localStorage.setItem('wins', wins.toString());
+                        setGameOver(true);
                     }}
+                    setGameOver={(isGameOver) => setGameOver(isGameOver)}
                 />
             }/>
             <Route path="/about" component={About}/>

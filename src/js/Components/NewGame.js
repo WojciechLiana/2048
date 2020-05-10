@@ -44,6 +44,7 @@ class NewGame extends React.Component {
             board: this.initialState,
             previousBoard: this.initialState
         });
+        this.props.setGameOver(false);
     }
 
     componentDidMount() {
@@ -72,6 +73,7 @@ class NewGame extends React.Component {
                             <Win increaseWins={() => this.props.increaseWins} tryAgainFnc={() => this.tryAgainFnc()}/>
                         </div> :
                         <div tabIndex={0} onKeyDown={(e) => {
+                            this.props.setGameOver(false);
                             this.setState(
                                 {previousBoard: this.state.board});
                             this.setState(
@@ -79,7 +81,10 @@ class NewGame extends React.Component {
                         }}>
                             <Board board={this.state.board}/>
                             <div className='bottomPanel'>
-                                <ArrowsPanel clickHandler={(handlingFunction) => this.clickHandler(handlingFunction)}/>
+                                <ArrowsPanel clickHandler={(handlingFunction) => {
+                                    this.props.setGameOver(false);
+                                    this.clickHandler(handlingFunction)
+                                }}/>
                                 <Undo undo={() => this.setState({board: this.state.previousBoard})}/>
                                 <ResetBtn resetFunction={() => this.resetGameHandler()}/>
                             </div>
