@@ -1,8 +1,8 @@
 import React from "react";
 
-function Undo(){
+function Undo({undo}){
     return(
-        <button className='undoBtn'>Undo</button>
+        <button className='undoBtn' onClick={()=>undo()}>Undo</button>
     );
 }
 
