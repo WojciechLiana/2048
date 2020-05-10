@@ -15,7 +15,7 @@ class NewGame extends React.Component {
         this.initialState = [
             [null, null, null, null, null],
             [null, null, null, null, null],
-            [null, null, 2, null, null],
+            [1024, 1024, 2, null, null],
             [null, null, null, null, null],
             [null, null, null, null, null]
         ];
@@ -50,9 +50,15 @@ class NewGame extends React.Component {
 
         return (
             checkIfGameIsLost(this.state.board) ?
-                <Lost increaseLosts={() => this.props.increaseLosts} tryAgainFnc={()=>this.tryAgainFnc()}/> :
+                <div className='gameOver'>
+                    <Board board={this.state.board}/>
+                    <Lost increaseLosts={() => this.props.increaseLosts} tryAgainFnc={() => this.tryAgainFnc()}/>
+                </div> :
                 (isGameWon(this.state.board) ?
-                        <Win increaseWins={() => this.props.increaseWins} tryAgainFnc={()=>this.tryAgainFnc()}/> :
+                        <div className='gameOver'>
+                            <Board board={this.state.board}/>
+                            <Win increaseWins={() => this.props.increaseWins} tryAgainFnc={() => this.tryAgainFnc()}/>
+                        </div> :
                         <div tabIndex={0} onKeyDown={(e) => this.setState(
                             {board: handleKeyboardArrows(e.nativeEvent.code, this.state.board)})}>
                             <Board board={this.state.board}/>

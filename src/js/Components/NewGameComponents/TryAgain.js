@@ -1,9 +1,9 @@
 import React from "react";
 
-function TryAgain({tryAgain}) {
+function TryAgain({tryAgain, label}) {
 
-    return(
-        <button onClick={()=>tryAgain()}>Try Again</button>
+    return (
+        <button onClick={() => tryAgain()}>{label}</button>
     );
 }
 

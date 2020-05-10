@@ -1,6 +1,7 @@
 $background: #D1CCC5
 $frame: #B5B1AC
 $darkLabel: #302F2F
+$orangeBG: #F2B179
 
 @mixin externalFrameDiv
   background-color: $background
@@ -16,7 +17,7 @@ $darkLabel: #302F2F
   display: flex
   flex-direction: column
 
-@mixin  buttonsDefault
+@mixin buttonsDefault
   outline: none
   font-weight: bolder
   border: none
@@ -43,6 +44,7 @@ $darkLabel: #302F2F
     display: flex
     align-items: center
     justify-content: space-around
+    margin-bottom: 20px
 
     button
       @include buttonsDefault
@@ -91,7 +93,7 @@ $darkLabel: #302F2F
 
       button
         @include buttonsDefault
-        background-color: #F2B179
+        background-color: $orangeBG
         width: 100px
         height: 50px
 
@@ -119,9 +121,39 @@ $darkLabel: #302F2F
       align-items: flex-start
 
       & *
-       margin-bottom: 20px
-       color: $darkLabel
-       font-weight: bolder
+        margin-bottom: 20px
+        color: $darkLabel
+        font-weight: bolder
 
       figure
-       margin: 0
+        margin: 0
+
+  .gameOver
+    position: relative
+
+  .win, .losts
+    position: absolute
+    top: 0
+    width: 360px
+    height: 100%
+    text-align: center
+    background-color: rgb(209, 204, 197, 0.7)
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+
+    & span
+      font-size: 30px
+      font-weight: bolder
+
+    & button
+      @include buttonsDefault
+      background-color: $orangeBG
+      width: 100px
+      height: 30px
+      margin-top: 10px
+
+      &:hover
+        background-color: $darkLabel
+        color: white

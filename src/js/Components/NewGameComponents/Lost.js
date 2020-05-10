@@ -7,8 +7,8 @@ function Lost({increaseLosts, tryAgainFnc}) {
 
     return (
         <div className='lost'>
-            You Lost!
-            <TryAgain tryAgain={()=>tryAgainFnc()}/>
+            <span>You Lost!</span>
+            <TryAgain tryAgain={() => tryAgainFnc()} label='Try Again'/>
         </div>)
 }
 

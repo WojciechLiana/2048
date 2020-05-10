@@ -7,8 +7,8 @@ function Win({increaseWins, tryAgainFnc}) {
 
     return (
         <div className='win'>
-            You Win!
-            <TryAgain tryAgain={()=>tryAgainFnc()}/>
+            <span>You Win!</span>
+            <TryAgain tryAgain={() => tryAgainFnc()} label='Play Again'/>
         </div>)
 }
 
