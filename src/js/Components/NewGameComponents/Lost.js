@@ -3,9 +3,8 @@ import TryAgain from "./TryAgain";
 
 function Lost({increaseLosts, tryAgainFnc}) {
 
-    useEffect(() => {
-        increaseLosts();
-        window.onkeydown = null;});
+    useEffect(() => increaseLosts());
+    useEffect(() => window.onkeydown = undefined);
 
     return (
         <div className='lost'>

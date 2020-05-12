@@ -87,7 +87,7 @@ class NewGame extends React.Component {
                             <Board board={this.state.board}/>
                             <Win increaseWins={() => this.props.increaseWins} tryAgainFnc={() => this.tryAgainFnc()}/>
                         </div> :
-                        <div tabIndex={0} >
+                        <div>
                             <Board board={this.state.board}/>
                             <div className='bottomPanel'>
                                 <ArrowsPanel clickHandler={(handlingFunction) => {
