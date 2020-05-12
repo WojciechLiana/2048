@@ -15,7 +15,7 @@ class NewGame extends React.Component {
         this.initialState = [
             [null, null, null, null],
             [null, null, null, null],
-            [null, null, 2, null],
+            [1024, 1024, 2, null],
             [null, null, null, null]
         ];
         this.state = {
@@ -38,6 +38,7 @@ class NewGame extends React.Component {
     }
 
     tryAgainFnc() {
+        window.onkeydown =  this.globalKeyEvent.bind(this);
         localStorage.removeItem('board');
         this.setState({
             board: this.initialState,
@@ -46,7 +47,19 @@ class NewGame extends React.Component {
         this.props.setGameOver(false);
     }
 
+    globalKeyEvent(e) {
+
+            this.props.setGameOver(false);
+            this.setState(
+                {previousBoard: this.state.board});
+            this.setState(
+                {board: handleKeyboardArrows(e.code, this.state.board)})
+    };
+
     componentDidMount() {
+
+        window.onkeydown =  this.globalKeyEvent.bind(this);
+
         this.setState({
             board: JSON.parse(localStorage.getItem('board')) || this.state.board,
             previousBoard: JSON.parse(localStorage.getItem('previousBoard')) || this.state.previousBoard
@@ -54,6 +67,9 @@ class NewGame extends React.Component {
     }
 
     componentWillUnmount() {
+
+        window.onkeydown = null;
+
         localStorage.setItem('board', JSON.stringify(this.state.board));
         localStorage.setItem('previousBoard', JSON.stringify(this.state.previousBoard));
     }
@@ -71,13 +87,7 @@ class NewGame extends React.Component {
                             <Board board={this.state.board}/>
                             <Win increaseWins={() => this.props.increaseWins} tryAgainFnc={() => this.tryAgainFnc()}/>
                         </div> :
-                        <div tabIndex={0} onKeyDown={(e) => {
-                            this.props.setGameOver(false);
-                            this.setState(
-                                {previousBoard: this.state.board});
-                            this.setState(
-                                {board: handleKeyboardArrows(e.nativeEvent.code, this.state.board)})
-                        }}>
+                        <div tabIndex={0} >
                             <Board board={this.state.board}/>
                             <div className='bottomPanel'>
                                 <ArrowsPanel clickHandler={(handlingFunction) => {

@@ -3,7 +3,11 @@ import TryAgain from "./TryAgain";
 
 function Win({increaseWins, tryAgainFnc}) {
 
-    useEffect(() => increaseWins());
+    useEffect(() => {
+        increaseWins();
+        window.onkeydown = null;}
+)
+    ;
 
     return (
         <div className='win'>
