@@ -13,22 +13,26 @@ function GameContent() {
     const [losts, setLosts] = React.useState(localStorage.getItem('losts') ? JSON.parse(localStorage.getItem('losts')) : 0);
     const [gameOver, setGameOver] = React.useState(localStorage.getItem('gameOver') ? JSON.parse(localStorage.getItem('gameOver')) : false);
 
+    const increaseLostsHandler = () => {
+        setLosts(gameOver ? losts : losts + 1);
+        localStorage.setItem('losts', losts.toString());
+        setGameOver(true);
+    };
+
+    const increaseWinsHandler = () => {
+        setWins(gameOver ? wins : wins + 1);
+        localStorage.setItem('wins', wins.toString());
+        setGameOver(true);
+    };
+
     return (
         <Router>
             <MenuPanel/>
 
             <Route path="/newGame" render={() =>
                 <NewGame
-                    increaseLosts={() => {
-                        setLosts(gameOver ? losts : losts + 1);
-                        localStorage.setItem('losts', losts.toString());
-                        setGameOver(true);
-                    }}
-                    increaseWins={() => {
-                        setWins(gameOver ? wins : wins + 1);
-                        localStorage.setItem('wins', wins.toString());
-                        setGameOver(true);
-                    }}
+                    increaseLosts={() => increaseLostsHandler()}
+                    increaseWins={() => increaseWinsHandler()}
                     setGameOver={(isGameOver) => setGameOver(isGameOver)}
                 />
             }/>

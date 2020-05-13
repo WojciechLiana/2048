@@ -1,6 +1,6 @@
 import moveCellsDown from "./moveCellsDown";
 import sumCellsDown from "./sumCellsDown";
-import updateTableWithRandomCell from "./updateTableWithRandomCell";
+import put2inRandomEmptyCell from "./put2inRandomEmptyCell";
 import findRandomEmptyCell from "./findRandomEmptyCell";
 import checkIfMoveWasDone from "./checkIfMoveWasDone";
 
@@ -9,7 +9,7 @@ const moveDownHandler = (board) => {
     const summedEqualCells = sumCellsDown(cellsMoved);
 
     return checkIfMoveWasDone(board, summedEqualCells) ?
-        updateTableWithRandomCell(summedEqualCells, findRandomEmptyCell(summedEqualCells)) :
+        put2inRandomEmptyCell(summedEqualCells, findRandomEmptyCell(summedEqualCells)) :
         board;
 };
 

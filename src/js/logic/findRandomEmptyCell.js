@@ -1,14 +1,14 @@
 const findRandomEmptyCell = board => {
 
-    const rowsAndIndexesOfEmptyCells = [];
+    const coordinatesOfEmptyCells = [];
 
     board.map((row, rowIndex) => row.map((cell, cellIndex) =>
         cell === null ?
-            rowsAndIndexesOfEmptyCells.push([rowIndex, cellIndex]) :
+            coordinatesOfEmptyCells.push([rowIndex, cellIndex]) :
             null
     ));
 
-    return rowsAndIndexesOfEmptyCells[Math.floor(Math.random() * rowsAndIndexesOfEmptyCells.length)];
+    return coordinatesOfEmptyCells[Math.floor(Math.random() * coordinatesOfEmptyCells.length)];
 };
 
 export default findRandomEmptyCell;

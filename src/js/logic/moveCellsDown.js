@@ -1,6 +1,6 @@
 function moveCellsDown(table) {
     const newTable = [];
-    for (let row = 0; row <4; row++) {
+    for (let row = 0; row < 4; row++) {
         newTable.push(
             JSON.parse(JSON.stringify(table))[row].filter(
                 element => element !== null
@@ -11,7 +11,7 @@ function moveCellsDown(table) {
     return newTable;
 }
 
-const addMissingCell = (row)=>{
+const addMissingCell = (row) => {
     while (row.length !== 4) {
         row.unshift(null);
     }

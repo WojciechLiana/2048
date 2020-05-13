@@ -1,5 +1,5 @@
 import moveCellsUp from "./moveCellsUp";
-import updateTableWithRandomCell from "./updateTableWithRandomCell";
+import put2inRandomEmptyCell from "./put2inRandomEmptyCell";
 import findRandomEmptyCell from "./findRandomEmptyCell";
 import sumCellsUp from "./sumCellsUp";
 import checkIfMoveWasDone from "./checkIfMoveWasDone";
@@ -9,7 +9,7 @@ const moveUpHandler = (board) => {
     const summedEqualCells = sumCellsUp(cellsMovedUp);
 
     return checkIfMoveWasDone(board, summedEqualCells) ?
-        updateTableWithRandomCell(summedEqualCells, findRandomEmptyCell(summedEqualCells)) :
+        put2inRandomEmptyCell(summedEqualCells, findRandomEmptyCell(summedEqualCells)) :
         board;
 };
 

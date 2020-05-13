@@ -11,7 +11,7 @@ function moveCellsUp(table) {
     return newTable;
 }
 
-const addMissingCell = (row)=>{
+const addMissingCell = (row) => {
     while (row.length !== 4) {
         row.push(null);
     }

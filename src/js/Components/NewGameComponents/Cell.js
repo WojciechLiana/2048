@@ -3,10 +3,10 @@ import "../../../css/cell.sass"
 
 function Cell({value}) {
 
-    const classValue = (value) => value > 2048 ? 4096: value;
+    const cellValue = (value) => value > 2048 ? 4096: value;
 
     return (
-        <div className={`cell cell${classValue(value)}`}>
+        <div className={`cell cell${cellValue(value)}`}>
             {value}
         </div>
     );

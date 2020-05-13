@@ -25,6 +25,7 @@ class NewGame extends React.Component {
     }
 
     clickHandler(handlingFunctionChangingState) {
+        this.props.setGameOver(false);
         this.setState({previousBoard: this.state.board});
         this.setState({board: handlingFunctionChangingState(this.state.board)});
     };
@@ -38,7 +39,7 @@ class NewGame extends React.Component {
     }
 
     tryAgainFnc() {
-        window.onkeydown =  this.globalKeyEvent.bind(this);
+        window.onkeydown = this.globalKeyEvent.bind(this);
         localStorage.removeItem('board');
         this.setState({
             board: this.initialState,
@@ -49,16 +50,16 @@ class NewGame extends React.Component {
 
     globalKeyEvent(e) {
 
-            this.props.setGameOver(false);
-            this.setState(
-                {previousBoard: this.state.board});
-            this.setState(
-                {board: handleKeyboardArrows(e.code, this.state.board)})
+        this.props.setGameOver(false);
+        this.setState(
+            {previousBoard: this.state.board});
+        this.setState(
+            {board: handleKeyboardArrows(e.code, this.state.board)})
     };
 
     componentDidMount() {
 
-        window.onkeydown =  this.globalKeyEvent.bind(this);
+        window.onkeydown = this.globalKeyEvent.bind(this);
 
         this.setState({
             board: JSON.parse(localStorage.getItem('board')) || this.state.board,
@@ -90,10 +91,7 @@ class NewGame extends React.Component {
                         <div>
                             <Board board={this.state.board}/>
                             <div className='bottomPanel'>
-                                <ArrowsPanel clickHandler={(handlingFunction) => {
-                                    this.props.setGameOver(false);
-                                    this.clickHandler(handlingFunction)
-                                }}/>
+                                <ArrowsPanel clickHandler={(handlingFunction) => this.clickHandler(handlingFunction)}/>
                                 <Undo undo={() => this.setState({board: this.state.previousBoard})}/>
                                 <ResetBtn resetFunction={() => this.resetGameHandler()}/>
                             </div>
