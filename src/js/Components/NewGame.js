@@ -10,6 +10,7 @@ import Undo from "./NewGameComponents/Undo";
 import ResetBtn from "./NewGameComponents/ResetBtn";
 import checkIfSlideNotClick from "../logic/checkIfSlideNotClick";
 import handleTouchEnd from "../logic/handleTouchEnd";
+import checkIfMoveWasDone from "../logic/checkIfMoveWasDone";
 
 class NewGame extends React.Component {
     constructor(props) {
@@ -28,9 +29,13 @@ class NewGame extends React.Component {
     }
 
     clickHandler(handlingFunctionChangingState) {
+
+        const boardBeforeMove = this.state.board;
         this.props.setGameOver(false);
-        this.setState({previousBoard: this.state.board});
         this.setState({board: handlingFunctionChangingState(this.state.board)});
+        checkIfMoveWasDone(boardBeforeMove, this.state.board) ?
+            this.setState({previousBoard: boardBeforeMove}) :
+            false;
     };
 
     resetGameHandler() {
@@ -55,11 +60,13 @@ class NewGame extends React.Component {
 
     globalKeyEvent(e) {
 
+        const boardBeforeMove = this.state.board;
         this.props.setGameOver(false);
         this.setState(
-            {previousBoard: this.state.board});
-        this.setState(
-            {board: handleKeyboardArrows(e.code, this.state.board)})
+            {board: handleKeyboardArrows(e.code, this.state.board)});
+        checkIfMoveWasDone(boardBeforeMove, this.state.board) ?
+            this.setState({previousBoard: boardBeforeMove}) :
+            false;
     };
 
     handleTouchStart(event) {
