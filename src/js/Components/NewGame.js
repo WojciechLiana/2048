@@ -8,10 +8,8 @@ import handleKeyboardArrows from "../logic/handleKeyboardArrows";
 import Lost from "./NewGameComponents/Lost";
 import Undo from "./NewGameComponents/Undo";
 import ResetBtn from "./NewGameComponents/ResetBtn";
-import moveUpHandler from "../logic/moveUpHandler";
-import moveLeftHandler from "../logic/moveLeftHandler";
-import moveRightHandler from "../logic/moveRightHandler";
-import moveDownHandler from "../logic/moveDownHandler";
+import checkIfSlideNotClick from "../logic/checkIfSlideNotClick";
+import handleTouchEnd from "../logic/handleTouchEnd";
 
 class NewGame extends React.Component {
     constructor(props) {
@@ -74,31 +72,19 @@ class NewGame extends React.Component {
         })
     };
 
-    handleTouchEnd(event) {
+    handleTouch(event) {
 
         const distanceX = event.changedTouches[0].clientX - this.state.touchStart.X;
         const distanceY = event.changedTouches[0].clientY - this.state.touchStart.Y;
 
-        if (Math.abs(distanceX) > Math.abs(distanceY)) {
-            if (this.state.touchStart.X > event.changedTouches[0].clientX) {
-                this.clickHandler(moveLeftHandler)
-            } else {
-                this.clickHandler(moveRightHandler)
-            }
-        } else if (Math.abs(distanceX) < Math.abs(distanceY)) {
-            if (this.state.touchStart.Y > event.changedTouches[0].clientY) {
-                this.clickHandler(moveUpHandler)
-            } else {
-                this.clickHandler(moveDownHandler)
-            }
-        }
+        checkIfSlideNotClick(distanceX, distanceY) ? handleTouchEnd(event, distanceX, distanceY) : false;
     }
 
     componentDidMount() {
 
         window.onkeydown = this.globalKeyEvent.bind(this);
         window.ontouchstart = (event) => this.handleTouchStart(event);
-        window.ontouchend = (event) => this.handleTouchEnd(event);
+        window.ontouchend = (event) => this.handleTouch(event);
         window.ontouchmove = (event) => event.preventDefault;
 
         this.setState({

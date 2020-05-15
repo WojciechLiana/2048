@@ -8,7 +8,7 @@ import moveDownHandler from "../../logic/moveDownHandler";
 function ArrowsPanel({clickHandler}) {
 
     return (
-        <div>
+        <div className='arrowsPanel'>
             <div>
                 <Arrow direction='up' onClick={() => clickHandler(moveUpHandler)}/>
             </div>
