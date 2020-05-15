@@ -8,6 +8,10 @@ import handleKeyboardArrows from "../logic/handleKeyboardArrows";
 import Lost from "./NewGameComponents/Lost";
 import Undo from "./NewGameComponents/Undo";
 import ResetBtn from "./NewGameComponents/ResetBtn";
+import moveUpHandler from "../logic/moveUpHandler";
+import moveLeftHandler from "../logic/moveLeftHandler";
+import moveRightHandler from "../logic/moveRightHandler";
+import moveDownHandler from "../logic/moveDownHandler";
 
 class NewGame extends React.Component {
     constructor(props) {
@@ -15,12 +19,13 @@ class NewGame extends React.Component {
         this.initialState = [
             [null, null, null, null],
             [null, null, null, null],
-            [1024, 1024, 2, null],
+            [null, null, 2, null],
             [null, null, null, null]
         ];
         this.state = {
             board: this.initialState,
-            previousBoard: this.initialState
+            previousBoard: this.initialState,
+            touchStart: {X: 0, Y: 0}
         };
     }
 
@@ -40,6 +45,8 @@ class NewGame extends React.Component {
 
     tryAgainFnc() {
         window.onkeydown = this.globalKeyEvent.bind(this);
+        window.ontouchstart = (event) => this.handleTouchStart(event);
+        window.ontouchend = (event) => this.handleTouchEnd(event);
         localStorage.removeItem('board');
         this.setState({
             board: this.initialState,
@@ -57,9 +64,42 @@ class NewGame extends React.Component {
             {board: handleKeyboardArrows(e.code, this.state.board)})
     };
 
+    handleTouchStart(event) {
+
+        this.setState({
+            touchStart: {
+                X: event.touches[0].clientX,
+                Y: event.touches[0].clientY
+            }
+        })
+    };
+
+    handleTouchEnd(event) {
+
+        const distanceX = event.changedTouches[0].clientX - this.state.touchStart.X;
+        const distanceY = event.changedTouches[0].clientY - this.state.touchStart.Y;
+
+        if (Math.abs(distanceX) > Math.abs(distanceY)) {
+            if (this.state.touchStart.X > event.changedTouches[0].clientX) {
+                this.clickHandler(moveLeftHandler)
+            } else {
+                this.clickHandler(moveRightHandler)
+            }
+        } else if (Math.abs(distanceX) < Math.abs(distanceY)) {
+            if (this.state.touchStart.Y > event.changedTouches[0].clientY) {
+                this.clickHandler(moveUpHandler)
+            } else {
+                this.clickHandler(moveDownHandler)
+            }
+        }
+    }
+
     componentDidMount() {
 
         window.onkeydown = this.globalKeyEvent.bind(this);
+        window.ontouchstart = (event) => this.handleTouchStart(event);
+        window.ontouchend = (event) => this.handleTouchEnd(event);
+        window.ontouchmove = (event) => event.preventDefault;
 
         this.setState({
             board: JSON.parse(localStorage.getItem('board')) || this.state.board,
@@ -70,6 +110,8 @@ class NewGame extends React.Component {
     componentWillUnmount() {
 
         window.onkeydown = null;
+        window.ontouchstart = null;
+        window.ontouchend = null;
 
         localStorage.setItem('board', JSON.stringify(this.state.board));
         localStorage.setItem('previousBoard', JSON.stringify(this.state.previousBoard));

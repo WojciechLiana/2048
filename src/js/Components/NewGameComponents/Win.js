@@ -5,6 +5,8 @@ function Win({increaseWins, tryAgainFnc}) {
 
     useEffect(() => increaseWins());
     useEffect(() => window.onkeydown = undefined);
+    useEffect(() => window.ontouchstart = undefined);
+    useEffect(() => window.ontouchend = undefined);
 
     return (
         <div className='win'>

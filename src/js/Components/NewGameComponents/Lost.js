@@ -5,6 +5,8 @@ function Lost({increaseLosts, tryAgainFnc}) {
 
     useEffect(() => increaseLosts());
     useEffect(() => window.onkeydown = undefined);
+    useEffect(() => window.ontouchstart = undefined);
+    useEffect(() => window.ontouchend = undefined);
 
     return (
         <div className='lost'>
