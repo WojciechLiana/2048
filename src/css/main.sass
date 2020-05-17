@@ -160,5 +160,14 @@ $orangeBG: #F2B179
         color: white
 
 @media (hover: none) and (pointer: coarse)
+
+  .menuButtons button, .bottomPanel button
+    background-color: $background !important
+    color: $darkLabel !important
+
+    &:active
+      background-color: $darkLabel !important
+      color: white !important
+
   .arrowsPanel
     display: none

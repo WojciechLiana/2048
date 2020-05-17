@@ -9,8 +9,11 @@ import Lost from "./NewGameComponents/Lost";
 import Undo from "./NewGameComponents/Undo";
 import ResetBtn from "./NewGameComponents/ResetBtn";
 import checkIfSlideNotClick from "../logic/checkIfSlideNotClick";
-import handleTouchEnd from "../logic/handleTouchEnd";
 import checkIfMoveWasDone from "../logic/checkIfMoveWasDone";
+import moveLeftHandler from "../logic/moveLeftHandler";
+import moveRightHandler from "../logic/moveRightHandler";
+import moveUpHandler from "../logic/moveUpHandler";
+import moveDownHandler from "../logic/moveDownHandler";
 
 class NewGame extends React.Component {
     constructor(props) {
@@ -84,7 +87,23 @@ class NewGame extends React.Component {
         const distanceX = event.changedTouches[0].clientX - this.state.touchStart.X;
         const distanceY = event.changedTouches[0].clientY - this.state.touchStart.Y;
 
-        checkIfSlideNotClick(distanceX, distanceY) ? handleTouchEnd(event, distanceX, distanceY) : false;
+        checkIfSlideNotClick(distanceX, distanceY) ? this.handleTouchEnd(event, distanceX, distanceY) : false;
+    }
+
+    handleTouchEnd(event, distanceX, distanceY) {
+        if (Math.abs(distanceX) > Math.abs(distanceY)) {
+            if (this.state.touchStart.X > event.changedTouches[0].clientX) {
+                this.clickHandler(moveLeftHandler)
+            } else {
+                this.clickHandler(moveRightHandler)
+            }
+        } else if (Math.abs(distanceX) < Math.abs(distanceY)) {
+            if (this.state.touchStart.Y > event.changedTouches[0].clientY) {
+                this.clickHandler(moveUpHandler)
+            } else {
+                this.clickHandler(moveDownHandler)
+            }
+        }
     }
 
     componentDidMount() {
