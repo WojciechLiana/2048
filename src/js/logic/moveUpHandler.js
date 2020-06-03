@@ -1,7 +1,7 @@
 import moveCellsUp from "./moveCellsUp";
 import put2inRandomEmptyCell from "./put2inRandomEmptyCell";
 import findRandomEmptyCell from "./findRandomEmptyCell";
-import sumCellsUp from "./sumCellsUp";
+import {sumCellsUp} from "./sumCellsUp";
 import checkIfMoveWasDone from "./checkIfMoveWasDone";
 
 const moveUpHandler = (board) => {

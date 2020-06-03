@@ -1,5 +1,5 @@
 import moveCellsDown from "./moveCellsDown";
-import sumCellsDown from "./sumCellsDown";
+import {sumCellsDown} from "./sumCellsDown";
 import put2inRandomEmptyCell from "./put2inRandomEmptyCell";
 import findRandomEmptyCell from "./findRandomEmptyCell";
 import checkIfMoveWasDone from "./checkIfMoveWasDone";

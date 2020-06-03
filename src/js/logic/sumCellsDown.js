@@ -22,4 +22,4 @@ const updateRowAfterSum = (row)=> {
     return newRow;
 };
 
-export default sumCellsDown;
+export {sumCellsDown, updateRowAfterSum};
